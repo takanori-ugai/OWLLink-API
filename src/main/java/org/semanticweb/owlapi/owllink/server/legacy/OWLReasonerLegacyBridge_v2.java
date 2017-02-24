@@ -23,11 +23,16 @@
 
 package org.semanticweb.owlapi.owllink.server.legacy;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
 import org.semanticweb.owl.inference.OWLReasonerAdapter;
 import org.semanticweb.owl.inference.OWLReasonerException;
 import org.semanticweb.owl.model.AddAxiom;
 import org.semanticweb.owl.model.OWLClass;
-import org.semanticweb.owl.model.*;
 import org.semanticweb.owl.model.OWLDataProperty;
 import org.semanticweb.owl.model.OWLDataRange;
 import org.semanticweb.owl.model.OWLException;
@@ -37,16 +42,24 @@ import org.semanticweb.owl.model.OWLObjectProperty;
 import org.semanticweb.owl.model.OWLOntologyChange;
 import org.semanticweb.owl.model.OWLOntologyManager;
 import org.semanticweb.owl.model.RemoveAxiom;
-import org.semanticweb.owlapi.model.*;
 import org.semanticweb.owlapi.model.OWLAxiom;
 import org.semanticweb.owlapi.model.OWLDataFactory;
 import org.semanticweb.owlapi.model.OWLDataPropertyExpression;
 import org.semanticweb.owlapi.model.OWLObjectPropertyExpression;
 import org.semanticweb.owlapi.model.OWLOntology;
 import org.semanticweb.owlapi.model.OWLOntologyCreationException;
-import org.semanticweb.owlapi.reasoner.*;
 
-import java.util.*;
+import org.semanticweb.owl.model.OWLConstant;
+import org.semanticweb.owl.model.OWLDescription;
+import org.semanticweb.owlapi.model.IRI;
+import org.semanticweb.owlapi.model.OWLLiteral;
+import org.semanticweb.owlapi.model.OWLNamedIndividual;
+import org.semanticweb.owlapi.reasoner.BufferingMode;
+import org.semanticweb.owlapi.reasoner.Node;
+import org.semanticweb.owlapi.reasoner.NodeSet;
+import org.semanticweb.owlapi.reasoner.OWLReasoner;
+import org.semanticweb.owlapi.reasoner.OWLReasonerConfiguration;
+import org.semanticweb.owlapi.reasoner.OWLReasonerFactory;
 
 /**
  * Author: Olaf Noppens

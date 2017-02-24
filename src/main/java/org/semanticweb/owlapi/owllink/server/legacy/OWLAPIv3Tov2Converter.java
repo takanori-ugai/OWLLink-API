@@ -24,11 +24,9 @@
 package org.semanticweb.owlapi.owllink.server.legacy;
 
 
-import org.semanticweb.owl.model.*;
 import org.semanticweb.owl.model.OWLDataRange;
 import org.semanticweb.owl.vocab.OWLRestrictedDataRangeFacetVocabulary;
 import org.semanticweb.owlapi.model.AddAxiom;
-import org.semanticweb.owlapi.model.*;
 import org.semanticweb.owlapi.model.OWLAnonymousIndividual;
 import org.semanticweb.owlapi.model.OWLAxiom;
 import org.semanticweb.owlapi.model.OWLClass;
@@ -82,7 +80,54 @@ import uk.ac.manchester.cs.owl.OWLDataTypeImpl;
 
 import java.net.URI;
 import java.net.URISyntaxException;
-import java.util.*;
+import java.util.Collections;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+import java.util.Vector;
+import org.semanticweb.owl.model.OWLConstant;
+import org.semanticweb.owl.model.OWLDataRangeFacetRestriction;
+import org.semanticweb.owl.model.OWLDescription;
+import org.semanticweb.owl.model.OWLTypedConstant;
+import org.semanticweb.owlapi.model.OWLAnnotationAssertionAxiom;
+import org.semanticweb.owlapi.model.OWLAnnotationProperty;
+import org.semanticweb.owlapi.model.OWLAnnotationPropertyDomainAxiom;
+import org.semanticweb.owlapi.model.OWLAnnotationPropertyRangeAxiom;
+import org.semanticweb.owlapi.model.OWLAsymmetricObjectPropertyAxiom;
+import org.semanticweb.owlapi.model.OWLClassExpression;
+import org.semanticweb.owlapi.model.OWLClassExpressionVisitorEx;
+import org.semanticweb.owlapi.model.OWLDataAllValuesFrom;
+import org.semanticweb.owlapi.model.OWLDataExactCardinality;
+import org.semanticweb.owlapi.model.OWLDataHasValue;
+import org.semanticweb.owlapi.model.OWLDataIntersectionOf;
+import org.semanticweb.owlapi.model.OWLDataMaxCardinality;
+import org.semanticweb.owlapi.model.OWLDataMinCardinality;
+import org.semanticweb.owlapi.model.OWLDataSomeValuesFrom;
+import org.semanticweb.owlapi.model.OWLDataUnionOf;
+import org.semanticweb.owlapi.model.OWLDatatype;
+import org.semanticweb.owlapi.model.OWLDatatypeDefinitionAxiom;
+import org.semanticweb.owlapi.model.OWLDatatypeRestriction;
+import org.semanticweb.owlapi.model.OWLFacetRestriction;
+import org.semanticweb.owlapi.model.OWLHasKeyAxiom;
+import org.semanticweb.owlapi.model.OWLIndividualVisitorEx;
+import org.semanticweb.owlapi.model.OWLLiteral;
+import org.semanticweb.owlapi.model.OWLNamedIndividual;
+import org.semanticweb.owlapi.model.OWLObjectAllValuesFrom;
+import org.semanticweb.owlapi.model.OWLObjectExactCardinality;
+import org.semanticweb.owlapi.model.OWLObjectHasSelf;
+import org.semanticweb.owlapi.model.OWLObjectHasValue;
+import org.semanticweb.owlapi.model.OWLObjectInverseOf;
+import org.semanticweb.owlapi.model.OWLObjectMaxCardinality;
+import org.semanticweb.owlapi.model.OWLObjectMinCardinality;
+import org.semanticweb.owlapi.model.OWLObjectSomeValuesFrom;
+import org.semanticweb.owlapi.model.OWLSameIndividualAxiom;
+import org.semanticweb.owlapi.model.OWLStringLiteral;
+import org.semanticweb.owlapi.model.OWLSubAnnotationPropertyOfAxiom;
+import org.semanticweb.owlapi.model.OWLSubClassOfAxiom;
+import org.semanticweb.owlapi.model.OWLSubDataPropertyOfAxiom;
+import org.semanticweb.owlapi.model.OWLSubObjectPropertyOfAxiom;
+import org.semanticweb.owlapi.model.OWLSubPropertyChainOfAxiom;
+import org.semanticweb.owlapi.model.OWLTypedLiteral;
 
 
 /**

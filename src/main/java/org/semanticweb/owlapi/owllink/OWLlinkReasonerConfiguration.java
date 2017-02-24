@@ -23,10 +23,14 @@
 
 package org.semanticweb.owlapi.owllink;
 
-import org.semanticweb.owlapi.reasoner.*;
 
 import java.net.MalformedURLException;
 import java.net.URL;
+import org.semanticweb.owlapi.reasoner.FreshEntityPolicy;
+import org.semanticweb.owlapi.reasoner.IndividualNodeSetPolicy;
+import org.semanticweb.owlapi.reasoner.NullReasonerProgressMonitor;
+import org.semanticweb.owlapi.reasoner.ReasonerProgressMonitor;
+import org.semanticweb.owlapi.reasoner.SimpleConfiguration;
 
 /**
  * Author: Olaf Noppens

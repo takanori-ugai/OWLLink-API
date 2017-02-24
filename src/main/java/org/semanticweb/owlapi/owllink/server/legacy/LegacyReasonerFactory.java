@@ -25,7 +25,11 @@ package org.semanticweb.owlapi.owllink.server.legacy;
 
 
 import org.semanticweb.owlapi.model.OWLOntology;
-import org.semanticweb.owlapi.reasoner.*;
+import org.semanticweb.owlapi.reasoner.BufferingMode;
+import org.semanticweb.owlapi.reasoner.IllegalConfigurationException;
+import org.semanticweb.owlapi.reasoner.OWLReasoner;
+import org.semanticweb.owlapi.reasoner.OWLReasonerConfiguration;
+import org.semanticweb.owlapi.reasoner.OWLReasonerFactory;
 
 
 /**

@@ -28,7 +28,6 @@ import org.coode.xml.XMLWriterFactory;
 import org.coode.xml.XMLWriterNamespaceManager;
 import org.semanticweb.owlapi.io.OWLRendererException;
 import org.semanticweb.owlapi.io.OWLRendererIOException;
-import org.semanticweb.owlapi.model.*;
 import org.semanticweb.owlapi.util.VersionInfo;
 import org.semanticweb.owlapi.vocab.Namespaces;
 import org.semanticweb.owlapi.vocab.OWLFacet;
@@ -40,6 +39,11 @@ import java.net.URI;
 import java.util.Comparator;
 import java.util.Map;
 import java.util.TreeMap;
+import org.semanticweb.owlapi.model.IRI;
+import org.semanticweb.owlapi.model.NodeID;
+import org.semanticweb.owlapi.model.OWLDatatype;
+import org.semanticweb.owlapi.model.OWLOntology;
+import org.semanticweb.owlapi.model.OWLRuntimeException;
 
 
 /**

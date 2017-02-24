@@ -23,13 +23,18 @@
 
 package org.semanticweb.owlapi.owllink.server;
 
-import org.mortbay.http.*;
 import org.mortbay.http.handler.AbstractHttpHandler;
 import org.mortbay.util.MultiException;
 import org.semanticweb.owlapi.reasoner.OWLReasonerConfiguration;
 import org.semanticweb.owlapi.reasoner.OWLReasonerFactory;
 
 import java.net.BindException;
+import org.mortbay.http.HttpContext;
+import org.mortbay.http.HttpHandler;
+import org.mortbay.http.HttpRequest;
+import org.mortbay.http.HttpResponse;
+import org.mortbay.http.HttpServer;
+import org.mortbay.http.SocketListener;
 
 /**
  * @author Olaf Noppens

@@ -24,13 +24,25 @@
 package org.semanticweb.owlapi.owllink.server;
 
 import org.semanticweb.owlapi.model.IRI;
-import org.semanticweb.owlapi.owllink.builtin.response.*;
 import org.semanticweb.owlapi.reasoner.OWLReasonerConfiguration;
 import org.semanticweb.owlapi.util.CollectionFactory;
 import org.semanticweb.owlapi.vocab.OWL2Datatype;
 
 import java.util.Collections;
 import java.util.Set;
+import org.semanticweb.owlapi.owllink.builtin.response.Configuration;
+import org.semanticweb.owlapi.owllink.builtin.response.OWLlinkDatatypeImpl;
+import org.semanticweb.owlapi.owllink.builtin.response.OWLlinkList;
+import org.semanticweb.owlapi.owllink.builtin.response.OWLlinkListImpl;
+import org.semanticweb.owlapi.owllink.builtin.response.OWLlinkLiteral;
+import org.semanticweb.owlapi.owllink.builtin.response.OWLlinkLiteralImpl;
+import org.semanticweb.owlapi.owllink.builtin.response.OWLlinkOneOf;
+import org.semanticweb.owlapi.owllink.builtin.response.OWLlinkOneOfImpl;
+import org.semanticweb.owlapi.owllink.builtin.response.PropertyImpl;
+import org.semanticweb.owlapi.owllink.builtin.response.ReasonerVersion;
+import org.semanticweb.owlapi.owllink.builtin.response.ReasonerVersionImpl;
+import org.semanticweb.owlapi.owllink.builtin.response.Setting;
+import org.semanticweb.owlapi.owllink.builtin.response.SettingImpl;
 
 /**
  * Author: Olaf Noppens

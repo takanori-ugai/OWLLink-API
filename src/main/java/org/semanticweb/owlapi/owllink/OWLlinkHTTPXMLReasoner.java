@@ -23,18 +23,89 @@
 
 package org.semanticweb.owlapi.owllink;
 
-import org.semanticweb.owlapi.model.*;
-import org.semanticweb.owlapi.owllink.builtin.requests.*;
-import org.semanticweb.owlapi.owllink.builtin.response.*;
 import org.semanticweb.owlapi.owllink.retraction.RetractRequest;
 import org.semanticweb.owlapi.owllink.server.response.ErrorResponse;
-import org.semanticweb.owlapi.reasoner.*;
-import org.semanticweb.owlapi.reasoner.impl.*;
 import org.semanticweb.owlapi.util.Version;
 
 import java.net.URL;
 import java.util.HashSet;
 import java.util.Set;
+import org.semanticweb.owl.inference.OWLReasonerException;
+import static org.semanticweb.owlapi.apibinding.OWLManager.getOWLDataFactory;
+import org.semanticweb.owlapi.model.AxiomType;
+import org.semanticweb.owlapi.model.IRI;
+import org.semanticweb.owlapi.model.OWLAxiom;
+import org.semanticweb.owlapi.model.OWLClass;
+import org.semanticweb.owlapi.model.OWLClassExpression;
+import org.semanticweb.owlapi.model.OWLDataProperty;
+import org.semanticweb.owlapi.model.OWLDataPropertyExpression;
+import org.semanticweb.owlapi.model.OWLIndividual;
+import org.semanticweb.owlapi.model.OWLLiteral;
+import org.semanticweb.owlapi.model.OWLNamedIndividual;
+import org.semanticweb.owlapi.model.OWLObjectProperty;
+import org.semanticweb.owlapi.model.OWLObjectPropertyExpression;
+import org.semanticweb.owlapi.model.OWLOntology;
+import org.semanticweb.owlapi.owllink.builtin.requests.Classify;
+import org.semanticweb.owlapi.owllink.builtin.requests.CreateKB;
+import org.semanticweb.owlapi.owllink.builtin.requests.GetDataPropertyTargets;
+import org.semanticweb.owlapi.owllink.builtin.requests.GetDescription;
+import org.semanticweb.owlapi.owllink.builtin.requests.GetDifferentIndividuals;
+import org.semanticweb.owlapi.owllink.builtin.requests.GetDisjointClasses;
+import org.semanticweb.owlapi.owllink.builtin.requests.GetDisjointDataProperties;
+import org.semanticweb.owlapi.owllink.builtin.requests.GetDisjointObjectProperties;
+import org.semanticweb.owlapi.owllink.builtin.requests.GetEquivalentClasses;
+import org.semanticweb.owlapi.owllink.builtin.requests.GetEquivalentDataProperties;
+import org.semanticweb.owlapi.owllink.builtin.requests.GetEquivalentObjectProperties;
+import org.semanticweb.owlapi.owllink.builtin.requests.GetFlattenedInstances;
+import org.semanticweb.owlapi.owllink.builtin.requests.GetFlattenedObjectPropertyTargets;
+import org.semanticweb.owlapi.owllink.builtin.requests.GetInstances;
+import org.semanticweb.owlapi.owllink.builtin.requests.GetObjectPropertyTargets;
+import org.semanticweb.owlapi.owllink.builtin.requests.GetSameIndividuals;
+import org.semanticweb.owlapi.owllink.builtin.requests.GetSubClasses;
+import org.semanticweb.owlapi.owllink.builtin.requests.GetSubDataProperties;
+import org.semanticweb.owlapi.owllink.builtin.requests.GetSubObjectProperties;
+import org.semanticweb.owlapi.owllink.builtin.requests.GetSuperClasses;
+import org.semanticweb.owlapi.owllink.builtin.requests.GetSuperDataProperties;
+import org.semanticweb.owlapi.owllink.builtin.requests.GetSuperObjectProperties;
+import org.semanticweb.owlapi.owllink.builtin.requests.GetTypes;
+import org.semanticweb.owlapi.owllink.builtin.requests.IsClassSatisfiable;
+import org.semanticweb.owlapi.owllink.builtin.requests.IsEntailed;
+import org.semanticweb.owlapi.owllink.builtin.requests.IsKBSatisfiable;
+import org.semanticweb.owlapi.owllink.builtin.requests.Realize;
+import org.semanticweb.owlapi.owllink.builtin.requests.ReleaseKB;
+import org.semanticweb.owlapi.owllink.builtin.requests.Tell;
+import org.semanticweb.owlapi.owllink.builtin.response.BooleanResponse;
+import org.semanticweb.owlapi.owllink.builtin.response.DataPropertySynonyms;
+import org.semanticweb.owlapi.owllink.builtin.response.Description;
+import org.semanticweb.owlapi.owllink.builtin.response.IndividualSynonyms;
+import org.semanticweb.owlapi.owllink.builtin.response.IndividualSynset;
+import org.semanticweb.owlapi.owllink.builtin.response.KB;
+import org.semanticweb.owlapi.owllink.builtin.response.OK;
+import org.semanticweb.owlapi.owllink.builtin.response.OWLlinkSemanticErrorResponseException;
+import org.semanticweb.owlapi.owllink.builtin.response.OWLlinkUnsatisfiableKBErrorResponseException;
+import org.semanticweb.owlapi.owllink.builtin.response.ResponseMessage;
+import org.semanticweb.owlapi.owllink.builtin.response.SetOfClassSynsets;
+import org.semanticweb.owlapi.owllink.builtin.response.SetOfClasses;
+import org.semanticweb.owlapi.owllink.builtin.response.SetOfIndividualSynsets;
+import org.semanticweb.owlapi.owllink.builtin.response.SetOfIndividuals;
+import org.semanticweb.owlapi.owllink.builtin.response.SetOfObjectProperties;
+import org.semanticweb.owlapi.reasoner.AxiomNotInProfileException;
+import org.semanticweb.owlapi.reasoner.BufferingMode;
+import org.semanticweb.owlapi.reasoner.ClassExpressionNotInProfileException;
+import org.semanticweb.owlapi.reasoner.FreshEntitiesException;
+import org.semanticweb.owlapi.reasoner.InconsistentOntologyException;
+import org.semanticweb.owlapi.reasoner.IndividualNodeSetPolicy;
+import org.semanticweb.owlapi.reasoner.Node;
+import org.semanticweb.owlapi.reasoner.NodeSet;
+import org.semanticweb.owlapi.reasoner.ReasonerInterruptedException;
+import org.semanticweb.owlapi.reasoner.TimeOutException;
+import org.semanticweb.owlapi.reasoner.UnsupportedEntailmentTypeException;
+import org.semanticweb.owlapi.reasoner.impl.OWLClassNode;
+import org.semanticweb.owlapi.reasoner.impl.OWLDataPropertyNode;
+import org.semanticweb.owlapi.reasoner.impl.OWLNamedIndividualNode;
+import org.semanticweb.owlapi.reasoner.impl.OWLNamedIndividualNodeSet;
+import org.semanticweb.owlapi.reasoner.impl.OWLObjectPropertyNode;
+import org.semanticweb.owlapi.reasoner.impl.OWLReasonerBase;
 
 /**
  * <code>OWLlinkHTTPXMLReasoner</code> is an implementation of <code>OWLlinkReasoner</code> that uses XML over
@@ -72,8 +143,8 @@ public class OWLlinkHTTPXMLReasoner extends OWLReasonerBase implements OWLlinkRe
                 isConsistent();
             } catch (InconsistentOntologyException e) {
                 throw new InconsistentOntologyException();
-            } catch (Exception e) {
-
+            } catch (ReasonerInterruptedException e) {
+            } catch (TimeOutException e) {
             }
         }
     }

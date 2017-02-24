@@ -24,7 +24,6 @@
 package org.semanticweb.owlapi.owllink.server.legacy;
 
 
-import org.semanticweb.owl.model.*;
 import org.semanticweb.owl.model.OWLClassAssertionAxiom;
 import org.semanticweb.owl.model.OWLDataPropertyAssertionAxiom;
 import org.semanticweb.owl.model.OWLDataPropertyDomainAxiom;
@@ -53,7 +52,6 @@ import org.semanticweb.owl.model.OWLReflexiveObjectPropertyAxiom;
 import org.semanticweb.owl.model.OWLSymmetricObjectPropertyAxiom;
 import org.semanticweb.owl.model.OWLTransitiveObjectPropertyAxiom;
 import org.semanticweb.owl.model.SWRLRule;
-import org.semanticweb.owlapi.model.*;
 import org.semanticweb.owlapi.model.OWLAxiom;
 import org.semanticweb.owlapi.model.OWLClass;
 import org.semanticweb.owlapi.model.OWLDataFactory;
@@ -68,13 +66,42 @@ import org.semanticweb.owlapi.model.OWLObjectPropertyExpression;
 import org.semanticweb.owlapi.model.OWLPropertyExpression;
 import org.semanticweb.owlapi.reasoner.Node;
 import org.semanticweb.owlapi.reasoner.NodeSet;
-import org.semanticweb.owlapi.reasoner.impl.*;
 import org.semanticweb.owlapi.util.CollectionFactory;
 import org.semanticweb.owlapi.vocab.OWLFacet;
 
 import java.util.List;
 import java.util.Set;
 import java.util.Vector;
+import org.semanticweb.owl.model.OWLAntiSymmetricObjectPropertyAxiom;
+import org.semanticweb.owl.model.OWLAxiomAnnotationAxiom;
+import org.semanticweb.owl.model.OWLConstant;
+import org.semanticweb.owl.model.OWLDataMaxCardinalityRestriction;
+import org.semanticweb.owl.model.OWLDataSubPropertyAxiom;
+import org.semanticweb.owl.model.OWLDataType;
+import org.semanticweb.owl.model.OWLDescription;
+import org.semanticweb.owl.model.OWLEntityAnnotationAxiom;
+import org.semanticweb.owl.model.OWLObjectPropertyChainSubPropertyAxiom;
+import org.semanticweb.owl.model.OWLObjectPropertyInverse;
+import org.semanticweb.owl.model.OWLObjectSelfRestriction;
+import org.semanticweb.owl.model.OWLObjectSubPropertyAxiom;
+import org.semanticweb.owl.model.OWLOntologyAnnotationAxiom;
+import org.semanticweb.owl.model.OWLSameIndividualsAxiom;
+import org.semanticweb.owl.model.OWLSubClassAxiom;
+import org.semanticweb.owlapi.model.IRI;
+import org.semanticweb.owlapi.model.OWLClassExpression;
+import org.semanticweb.owlapi.model.OWLDatatype;
+import org.semanticweb.owlapi.model.OWLFacetRestriction;
+import org.semanticweb.owlapi.model.OWLLiteral;
+import org.semanticweb.owlapi.model.OWLNamedIndividual;
+import org.semanticweb.owlapi.model.OWLStringLiteral;
+import org.semanticweb.owlapi.reasoner.impl.OWLClassNode;
+import org.semanticweb.owlapi.reasoner.impl.OWLClassNodeSet;
+import org.semanticweb.owlapi.reasoner.impl.OWLDataPropertyNode;
+import org.semanticweb.owlapi.reasoner.impl.OWLDataPropertyNodeSet;
+import org.semanticweb.owlapi.reasoner.impl.OWLNamedIndividualNode;
+import org.semanticweb.owlapi.reasoner.impl.OWLNamedIndividualNodeSet;
+import org.semanticweb.owlapi.reasoner.impl.OWLObjectPropertyNode;
+import org.semanticweb.owlapi.reasoner.impl.OWLObjectPropertyNodeSet;
 
 
 /**

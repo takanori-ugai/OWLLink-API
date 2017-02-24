@@ -23,7 +23,12 @@
 
 package org.semanticweb.owlapi.owllink.server.legacy;
 
-import org.semanticweb.owlapi.reasoner.*;
+import org.semanticweb.owlapi.reasoner.FreshEntityPolicy;
+import org.semanticweb.owlapi.reasoner.IndividualNodeSetPolicy;
+import org.semanticweb.owlapi.reasoner.NullReasonerProgressMonitor;
+import org.semanticweb.owlapi.reasoner.ReasonerProgressMonitor;
+import org.semanticweb.owlapi.reasoner.SimpleConfiguration;
+
 
 /**
  * Author: Olaf Noppens

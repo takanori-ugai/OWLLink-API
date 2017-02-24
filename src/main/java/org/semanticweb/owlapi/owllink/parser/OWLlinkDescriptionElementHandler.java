@@ -27,10 +27,15 @@ import org.coode.owlapi.owlxmlparser.OWLXMLParserException;
 import org.coode.owlapi.owlxmlparser.OWLXMLParserHandler;
 import org.semanticweb.owlapi.model.IRI;
 import org.semanticweb.owlapi.owllink.OWLlinkXMLVocabulary;
-import org.semanticweb.owlapi.owllink.builtin.response.*;
 
 import java.util.HashSet;
 import java.util.Set;
+import org.semanticweb.owlapi.owllink.builtin.response.Configuration;
+import org.semanticweb.owlapi.owllink.builtin.response.Description;
+import org.semanticweb.owlapi.owllink.builtin.response.DescriptionImpl;
+import org.semanticweb.owlapi.owllink.builtin.response.ProtocolVersion;
+import org.semanticweb.owlapi.owllink.builtin.response.PublicKB;
+import org.semanticweb.owlapi.owllink.builtin.response.ReasonerVersion;
 
 /**
  * Created by IntelliJ IDEA.

@@ -26,7 +26,11 @@ package org.semanticweb.owlapi.owllink.server.parser;
 import org.coode.owlapi.owlxmlparser.AbstractOWLAxiomElementHandler;
 import org.coode.owlapi.owlxmlparser.OWLXMLParserException;
 import org.coode.owlapi.owlxmlparser.OWLXMLParserHandler;
-import org.semanticweb.owlapi.model.*;
+import org.semanticweb.owlapi.model.OWLAxiom;
+import org.semanticweb.owlapi.model.OWLClassAssertionAxiom;
+import org.semanticweb.owlapi.model.OWLSubClassOfAxiom;
+import org.semanticweb.owlapi.model.OWLSubDataPropertyOfAxiom;
+import org.semanticweb.owlapi.model.OWLSubObjectPropertyOfAxiom;
 import org.semanticweb.owlapi.owllink.builtin.requests.IsEntailedDirect;
 
 /**

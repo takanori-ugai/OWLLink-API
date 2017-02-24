@@ -26,7 +26,6 @@ package org.semanticweb.owlapi.owllink.renderer;
 import org.semanticweb.owlapi.io.OWLRendererException;
 import org.semanticweb.owlapi.model.IRI;
 import org.semanticweb.owlapi.owllink.KBRequest;
-import static org.semanticweb.owlapi.owllink.OWLlinkXMLVocabulary.*;
 import org.semanticweb.owlapi.owllink.PrefixManagerProvider;
 import org.semanticweb.owlapi.owllink.Request;
 import org.semanticweb.owlapi.owllink.builtin.requests.CreateKB;
@@ -36,6 +35,10 @@ import org.semanticweb.owlapi.util.DefaultPrefixManager;
 
 import java.io.Writer;
 import java.util.*;
+import static org.semanticweb.owlapi.owllink.OWLlinkXMLVocabulary.FULLIRI;
+import static org.semanticweb.owlapi.owllink.OWLlinkXMLVocabulary.KB_ATTRIBUTE;
+import static org.semanticweb.owlapi.owllink.OWLlinkXMLVocabulary.NAME_Attribute;
+import static org.semanticweb.owlapi.owllink.OWLlinkXMLVocabulary.PREFIX;
 
 /**
  * @author Olaf Noppens
